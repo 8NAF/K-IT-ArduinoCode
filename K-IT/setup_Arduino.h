@@ -1,7 +1,6 @@
 #ifndef __SETUP_ARDUINO_H__
 #define __SETUP_ARDUINO_H__
 
-
 #if defined(ESP32)
 	#include <WiFi.h>
 #elif defined(ESP8266)
@@ -14,9 +13,8 @@
 
 void setup_WiFi() {
 
-
-	WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 	Serial.print("Connecting to Wi-Fi");
+	WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
 	while (WiFi.status() != WL_CONNECTED) {
 		Serial.print(".");
