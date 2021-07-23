@@ -9,12 +9,12 @@ void delayAndPrint(int seconds) {
 	Serial.println();
 }
 
-void printStageChange(const String& label, byte previousState, byte currentState) {
-	Serial.print(label);
-	Serial.print(previousState == HIGH ? "HIGH" : "LOW");
-	Serial.print(" -> ");
-	Serial.print(currentState == HIGH ? "HIGH" : "LOW");
-	Serial.print("\n");
+void printStageChange(const char* label, byte previousState, byte currentState) {
+	
+	const char * previous = (previousState == HIGH ? "HIGH" : "LOW");
+	const char* current = (currentState == HIGH ? "HIGH" : "LOW");
+	
+	Serial.printf("%s: %s -> %s\n", label, previous, current);
 }
 
 #endif

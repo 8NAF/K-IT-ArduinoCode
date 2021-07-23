@@ -91,7 +91,7 @@ void loop() {
 
 	if (previousState == LOW and currentState == HIGH) {
 
-		printStageChange("Stage change (L->H): ", previousState, currentState);
+		printStageChange("Stage change (L->H)", previousState, currentState);
 
 		// Khởi tạo một notification mới trên firebase
 		// Gán start bằng thời gia hiện tại
@@ -101,7 +101,7 @@ void loop() {
 
 
 		currentState = digitalRead(PIR);
-		printStageChange("Stage change (H->15): ", previousState, currentState);
+		printStageChange("Stage change (H->15)", previousState, currentState);
 
 		// Nếu sau 15s mà cảm biến vẫn HIGH thì
 		// - gán end bằng thời gian hiên tại (nhưng không reset lại currentId)
@@ -126,7 +126,7 @@ void loop() {
 
 	if (previousState == HIGH and currentState == LOW) {
 
-		printStageChange("Stage change (H->L): ", previousState, currentState);
+		printStageChange("Stage change (H->L)", previousState, currentState);
 
 		Serial.println("Set end because sensor is low");
 		
