@@ -2,9 +2,9 @@
 #define __UTILITY_H__
 
 void delayAndPrint(int seconds) {
-	for (auto i = 1UL; i <= seconds; ++i) {
-		Serial.printf("%d ", i);
+	for (auto i = 1; i <= seconds; ++i) {
 		delay(1000);
+		Serial.printf("%d ", i);
 	}
 	Serial.println();
 }
