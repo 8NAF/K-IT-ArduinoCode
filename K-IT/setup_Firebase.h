@@ -10,6 +10,7 @@
 
 #include "Utility.h"
 
+
 #define DATABASE_URL "k-it-283d4-default-rtdb.asia-southeast1.firebasedatabase.app"
 #define DATABASE_SECRET "H9HszprK8pUExtW2pp8pbrIdw1gfHy6Y3mUboMg9"
 
@@ -29,9 +30,7 @@ void setup_FirebaseCloudMessaging() {
 	fcm.fcm.begin(FIREBASE_FCM_SERVER_KEY);
 	fcm.fcm.setPriority("high");
 	fcm.fcm.setCollapseKey("K-IT");
-	fcm.fcm.setTimeToLive(900); // 15 phút
 }
-
 
 
 const String parentPath = "/applicationConfiguration";
@@ -60,8 +59,7 @@ void multiPathDataCallback(MultiPathStreamData stream) {
 		// Thêm token mới vào
 		fcm.fcm.addDeviceToken(newToken);
 
-		Serial.print("Converted value: ");
-		Serial.println(newToken);
+		Serial.printf("Converted value: %s\n", newToken.c_str());
 		delayAndPrint(5);
 	}
 
@@ -71,14 +69,12 @@ void multiPathDataCallback(MultiPathStreamData stream) {
 		Serial.printf("Original value: %s\n", stream.value.c_str());
 
 		turnOffNotification = (stream.value == "false");
-		Serial.print("Converted value: ");
-		Serial.println(turnOffNotification ? "true" : "false");
+		Serial.printf("Converted value: %s\n", turnOffNotification ? "true" : "false");
 		delayAndPrint(5);
 	}
 
 	// Nếu delayNotificationSeconds có thay đổi
 	if (stream.get(childPath[2])) {
-
 		Serial.println("delayNotificationSeconds change");
 		Serial.printf("Original value: %s\n", stream.value.c_str());
 
@@ -105,6 +101,5 @@ void setup_callback() {
 
 	Firebase.setMultiPathStreamCallback(multiStream, multiPathDataCallback, timeoutCallback);
 }
-
 
 #endif

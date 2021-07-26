@@ -16,8 +16,6 @@ void setup() {
 
 
 auto notification = Notification();
-byte previousState = LOW;
-byte currentState = LOW;
 
 void notifyClient() {
 
@@ -38,8 +36,6 @@ void notifyClient() {
 	else {
 		Serial.println("Error Sending notification to client: " + fcm.errorReason());
 	}
-
-
 }
 
 bool isReady() {
@@ -60,6 +56,9 @@ bool isReady() {
 	
 	return true;
 }
+
+byte previousState = LOW;
+byte currentState = LOW;
 
 void loop() {
 
@@ -88,7 +87,6 @@ void loop() {
 
 	// Nếu cảm biến chuyển từ trạng thái LOW sang HIGH
 	currentState = digitalRead(PIR);
-
 	if (previousState == LOW and currentState == HIGH) {
 
 		printStageChange("Stage change (L->H)", previousState, currentState);
@@ -123,11 +121,9 @@ void loop() {
 
 	// Nếu cảm biến chuyển từ trạng thái HIGH sang LOW
 	currentState = digitalRead(PIR);
-
 	if (previousState == HIGH and currentState == LOW) {
 
 		printStageChange("Stage change (H->L)", previousState, currentState);
-
 		Serial.println("Set end because sensor is low");
 		
 		digitalWrite(LED, LOW);
