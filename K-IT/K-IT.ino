@@ -19,11 +19,8 @@ auto notification = Notification();
 
 void notifyClient() {
 
-	//Title, body, [icon, [action]]
-	fcm.fcm.setNotifyMessage("Chú ý", "Cảnh báo có trộm");
-
 	// Data: dạng key - value
-	String data = R"({"notificationId":")" + notification.currentId + R"("})";
+	String data = R"({"logId":")" + notification.currentId + R"("})";
 	Serial.println("data: " + data);
 	//fcm.fcm.addCustomNotifyMessage("notificationId", notification.currentId);
 	fcm.fcm.setDataMessage(data);
